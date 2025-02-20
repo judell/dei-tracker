@@ -4,7 +4,8 @@ A tool to help maintain a list of companies retreating and holding the line on D
 
 ## Example
 
-![image](https://github.com/user-attachments/assets/af2a5ab6-ebfc-4dad-ad53-768c56a8bba8)
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/d8f94aa1-224c-44a5-b1a5-f7cfa885132a" />
+
 
 ## Updating
 
