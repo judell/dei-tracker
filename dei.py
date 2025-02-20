@@ -210,5 +210,4 @@ class DEISourceManager:
 
 if __name__ == "__main__":
     manager = DEISourceManager(retreating_sources, holding_sources)
-    print("Class-based output:")
     print(manager.generate_markdown())
