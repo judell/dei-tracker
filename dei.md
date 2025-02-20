@@ -1,5 +1,7 @@
+Class-based output:
 # Companies holding on and retreating from DEI
 *generated 2025-02-20*
+
 | Retreating | Sources | Holding the Line | Sources |
 |------------|---------|------------------|---------|
 | Amazon | R2 | Abercrombie and Fitch | H2 |
@@ -63,7 +65,7 @@ H4) (2025-01-31) [Business Insider: Companies Supporting DEI Efforts - CEO Comme
 ## Retreating
 
 
-R1) (2025-02-17) [Forbes: Banks Including JPMo5rgan Chase and Morgan Stanley Reportedly Cutting Back DEI References](https://www.forbes.com/sites/conormurray/2025/02/17/banks-including-jpmorgan-chase-and-morgan-stanley-reportedly-cutting-back-dei-references-here-are-all-the-companies-rolling-back-dei/)
+R1) (2025-02-17) [Forbes: Banks Including JPMorgan Chase and Morgan Stanley Reportedly Cutting Back DEI References](https://www.forbes.com/sites/conormurray/2025/02/17/banks-including-jpmorgan-chase-and-morgan-stanley-reportedly-cutting-back-dei-references-here-are-all-the-companies-rolling-back-dei/)
 
 R2) (2025-02-12) [AP: Which US Companies Are Pulling Back on Diversity Initiatives](https://www.ap.org/news-highlights/spotlights/2025/which-us-companies-are-pulling-back-on-diversity-initiatives/)
 
