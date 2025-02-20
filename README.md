@@ -19,11 +19,13 @@ retreating_sources = [
             "Smithsonian Institution", "Target", "The FBI", "Walmart", "Wells Fargo"
         ]
     },
-    {}
+    {
+        ...
+    }
 ]
 ```
 
-```json
+```
 holding_sources = [
     {
         "date": "2025-02-18",
@@ -34,6 +36,8 @@ holding_sources = [
             "Procter & Gamble", "Sephora"
         ]
     },
-    {}
+    {
+        ... 
+    }
 ]
 ```
