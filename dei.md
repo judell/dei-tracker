@@ -1,6 +1,5 @@
-Class-based output:
 # Companies holding on and retreating from DEI
-*generated 2025-02-20*
+*This is a point-in-time snapshot, generated on 2025-02-20, derived from the listed sources. See README for how to update.*
 
 | Retreating | Sources | Holding the Line | Sources |
 |------------|---------|------------------|---------|
@@ -51,6 +50,17 @@ Class-based output:
 |  |  | United Airlines | H3 |
 |  |  | Wilson Sonsini Goodrich & Rosati | H2 |
 
+
+
+## Retreating
+
+
+R1) (2025-02-17) [Forbes: Banks Including JPMorgan Chase and Morgan Stanley Reportedly Cutting Back DEI References](https://www.forbes.com/sites/conormurray/2025/02/17/banks-including-jpmorgan-chase-and-morgan-stanley-reportedly-cutting-back-dei-references-here-are-all-the-companies-rolling-back-dei/)
+
+R2) (2025-02-12) [AP: Which US Companies Are Pulling Back on Diversity Initiatives](https://www.ap.org/news-highlights/spotlights/2025/which-us-companies-are-pulling-back-on-diversity-initiatives/)
+
+R3) (2025-02-11) [TechTarget: What Companies Are Rolling Back DEI Policies](https://www.techtarget.com/whatis/feature/What-companies-are-rolling-back-DEI-policies)
+
 ## Holding the line
 
 
@@ -61,12 +71,3 @@ H2) (2025-02-17) [Report: 46 Companies Sticking With DEI](https://buildremote.co
 H3) (2025-02-04) [The Root: A List of Companies That Continue to Support DEI](https://www.theroot.com/a-list-of-companies-that-continue-to-support-dei-1851755249)
 
 H4) (2025-01-31) [Business Insider: Companies Supporting DEI Efforts - CEO Comments](https://www.businessinsider.com/companies-supporting-dei-efforts-ceo-comments-2025-1)
-
-## Retreating
-
-
-R1) (2025-02-17) [Forbes: Banks Including JPMorgan Chase and Morgan Stanley Reportedly Cutting Back DEI References](https://www.forbes.com/sites/conormurray/2025/02/17/banks-including-jpmorgan-chase-and-morgan-stanley-reportedly-cutting-back-dei-references-here-are-all-the-companies-rolling-back-dei/)
-
-R2) (2025-02-12) [AP: Which US Companies Are Pulling Back on Diversity Initiatives](https://www.ap.org/news-highlights/spotlights/2025/which-us-companies-are-pulling-back-on-diversity-initiatives/)
-
-R3) (2025-02-11) [TechTarget: What Companies Are Rolling Back DEI Policies](https://www.techtarget.com/whatis/feature/What-companies-are-rolling-back-DEI-policies)
