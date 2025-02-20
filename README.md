@@ -4,7 +4,7 @@ A tool to help maintain a list of companies retreating and holding the line on D
 
 To update the table and source list, add to the these structures and rerun dei.py.
 
-```json
+```
 retreating_sources = [
     {
         "date": "2025-02-17",
@@ -19,7 +19,7 @@ retreating_sources = [
             "Smithsonian Institution", "Target", "The FBI", "Walmart", "Wells Fargo"
         ]
     },
-    ...
+    {}
 ]
 ```
 
@@ -34,6 +34,6 @@ holding_sources = [
             "Procter & Gamble", "Sephora"
         ]
     },
-    ...
+    {}
 ]
 ```
