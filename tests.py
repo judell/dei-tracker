@@ -3,24 +3,24 @@ from datetime import datetime
 from dei import DEISourceManager
 
 class TestDEISourceManager(unittest.TestCase):
-   """
-   Tests for the DEISourceManager class, which tracks companies' DEI stances based on news sources.
-   
-   Key principles being tested:
-   1. Sources are processed chronologically with newer sources taking precedence
-   2. A company in 'retreating' cannot be moved to 'holding' by an older source
-   3. Companies accumulate source references within their category
-   4. When a company moves categories, its previous source references are cleared
-   5. For same-date sources, retreating takes precedence over holding
-   6. When multiple sources share the same date, they are processed in input order
-      within their respective categories
-   """
+    """
+    Tests for the DEISourceManager class, which tracks companies' DEI stances based on news sources.
 
-   def setUp(self):
+    Key principles being tested:
+    1. Sources are processed chronologically with newer sources taking precedence
+    2. A company in 'retreating' cannot be moved to 'holding' by an older source
+    3. Companies accumulate source references within their category
+    4. When a company moves categories, its previous source references are cleared
+    5. For same-date sources, retreating takes precedence over holding
+    6. When multiple sources share the same date, they are processed in input order
+        within their respective categories
+    """
+
+    def setUp(self):
        """Creates a fresh DEISourceManager instance before each test"""
        self.manager = DEISourceManager()
 
-   def test_retreating_company_never_seen_before(self):
+    def test_retreating_company_never_seen_before(self):
        """
        Tests handling of a company's first appearance in a retreating source.
        
@@ -43,7 +43,7 @@ class TestDEISourceManager(unittest.TestCase):
        self.assertEqual(self.manager.retreating_companies["CompanyA"], ["R1"])
        self.assertNotIn("CompanyA", self.manager.holding_companies)
 
-   def test_retreating_company_already_in_retreating(self):
+    def test_retreating_company_already_in_retreating(self):
        """
        Tests accumulation of sources for a company already in retreating.
        
@@ -75,7 +75,7 @@ class TestDEISourceManager(unittest.TestCase):
        self.assertSetEqual(set(self.manager.retreating_companies["CompanyB"]), {"R1", "R2"})
        self.assertNotIn("CompanyB", self.manager.holding_companies)
 
-   def test_retreating_company_already_in_holding(self):
+    def test_retreating_company_already_in_holding(self):
        """
        Tests complete removal of holding references when company moves to retreating.
        
@@ -106,7 +106,7 @@ class TestDEISourceManager(unittest.TestCase):
        self.assertNotIn("CompanyC", self.manager.holding_companies)
        self.assertNotIn("H1", self.manager.holding_companies.get("CompanyC", []))
 
-   def test_holding_company_never_seen_before(self):
+    def test_holding_company_never_seen_before(self):
        """
        Tests handling of a company's first appearance in a holding source.
        
@@ -129,7 +129,7 @@ class TestDEISourceManager(unittest.TestCase):
        self.assertEqual(self.manager.holding_companies["CompanyD"], ["H1"])
        self.assertNotIn("CompanyD", self.manager.retreating_companies)
 
-   def test_holding_company_already_in_holding(self):
+    def test_holding_company_already_in_holding(self):
        """
        Tests accumulation of sources for a company already in holding.
        
@@ -161,7 +161,7 @@ class TestDEISourceManager(unittest.TestCase):
        self.assertSetEqual(set(self.manager.holding_companies["CompanyE"]), {"H1", "H2"})
        self.assertNotIn("CompanyE", self.manager.retreating_companies)
 
-   def test_holding_company_already_in_retreating(self):
+    def test_holding_company_already_in_retreating(self):
        """
        Tests that holding sources cannot override retreating classification.
        
@@ -190,7 +190,7 @@ class TestDEISourceManager(unittest.TestCase):
        self.assertEqual(self.manager.retreating_companies["CompanyF"], ["R1"])
        self.assertNotIn("CompanyF", self.manager.holding_companies)
 
-   def test_retreating_company_with_newer_source_should_override(self):
+    def test_retreating_company_with_newer_source_should_override(self):
        """
        Tests that a newer retreating source overrides an older holding source.
        
@@ -219,7 +219,7 @@ class TestDEISourceManager(unittest.TestCase):
        self.assertIn("CompanyG", self.manager.retreating_companies)
        self.assertNotIn("CompanyG", self.manager.holding_companies)
 
-   def test_company_in_both_retreating_and_holding_same_source(self):
+    def test_company_in_both_retreating_and_holding_same_source(self):
        """
        Tests handling of a company appearing in both categories on the same date.
        
@@ -246,41 +246,52 @@ class TestDEISourceManager(unittest.TestCase):
        self.assertIn("CompanyH", self.manager.retreating_companies)
        self.assertNotIn("CompanyH", self.manager.holding_companies)
 
-   def test_source_date_ordering(self):
-       """
-       Tests that sources are processed in strict chronological order.
-       
-       Scenario:
-       1. Two holding sources with different dates mention same company
-       2. Expected: Company should have references from both sources
-       3. Source labels should reflect chronological order, not input order
-       
-       This test ensures the chronological processing of sources regardless
-       of the order they were added to the manager.
-       
-       Note: For sources with the same date, processing order is determined by:
-       - Category (retreating processed before holding)
-       - Within category: order in which sources were added to the manager
-       """
-       self.manager.holding_sources = [
-           {
-               "date": "2025-02-20",
-               "title": "Newest Source",
-               "url": "http://test.com",
-               "companies": ["CompanyI"]
-           },
-           {
-               "date": "2025-02-10",
-               "title": "Oldest Source",
-               "url": "http://test.com",
-               "companies": ["CompanyI"]
-           }
-       ]
-       self.manager.process_sources()
-       
-       self.assertSetEqual(set(self.manager.holding_companies["CompanyI"]), {"H1", "H2"})
+    def test_source_date_ordering(self):
+        """
+        Tests that sources are processed in strict chronological order.
+        
+        Scenario:
+        1. Add sources in non-chronological order
+        2. Verify they're processed newest-to-oldest regardless of input order
+        3. Verify source labels reflect chronological order, not input order
+        """
+        # Add sources in non-chronological order
+        self.manager.holding_sources = [
+            {
+                "date": "2025-02-10",  # Older source added first
+                "title": "Older Source",
+                "url": "http://test.com",
+                "companies": ["CompanyI"]
+            },
+            {
+                "date": "2025-02-20",  # Newer source added second
+                "title": "Newer Source",
+                "url": "http://test.com",
+                "companies": ["CompanyI"]
+            }
+        ]
+        self.manager.process_sources()
+        
+        # Verify references are in chronological order (newest first)
+        self.assertEqual(
+            self.manager.holding_companies["CompanyI"],
+            ["H1", "H2"],  # H1 should be from Feb 20, H2 from Feb 10
+            "Sources should be processed newest-to-oldest regardless of input order"
+        )
+        
+        # Additional verification that sources were processed in date order
+        self.assertEqual(
+            self.manager.holding_sources[0]["date"],
+            "2025-02-20",
+            "First source should be newest after processing"
+        )
+        self.assertEqual(
+            self.manager.holding_sources[1]["date"],
+            "2025-02-10",
+            "Second source should be oldest after processing"
+        )
 
-   def test_same_date_source_ordering(self):
+    def test_same_date_source_ordering(self):
        """
        Tests handling of multiple sources from the same date.
        
