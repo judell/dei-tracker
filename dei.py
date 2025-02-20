@@ -1,10 +1,9 @@
-
 from datetime import date
 
 retreating_sources = [
     {
         "date": "2025-02-17",
-        "title": "Forbes: Banks Including JPMo5rgan Chase and Morgan Stanley Reportedly Cutting Back DEI References",
+        "title": "Forbes: Banks Including JPMorgan Chase and Morgan Stanley Reportedly Cutting Back DEI References",
         "url": "https://www.forbes.com/sites/conormurray/2025/02/17/banks-including-jpmorgan-chase-and-morgan-stanley-reportedly-cutting-back-dei-references-here-are-all-the-companies-rolling-back-dei/",
         "companies": [
             "Amtrak", "Bank of America", "Boeing", "Brown-Forman (Jack Daniel's)", "Chipotle",
@@ -79,39 +78,6 @@ holding_sources = [
     }
 ]
 
-# Extract unique companies and dynamically assign source labels
-retreating_companies = {}
-holding_companies = {}
-
-# Assign dynamic source labels (R1, R2, ...) based on order in the list
-for index, source in enumerate(retreating_sources, start=1):
-    source_label = f"R{index}"
-    for company in source["companies"]:
-        # If the company exists in Holding, remove it first (newest category wins)
-        if company in holding_companies:
-            del holding_companies[company]
-
-        if company not in retreating_companies:
-            retreating_companies[company] = []
-        retreating_companies[company].append(source_label)
-
-# Assign dynamic source labels (H1, H2, ...) for holding the line
-for index, source in enumerate(holding_sources, start=1):
-    source_label = f"H{index}"
-    for company in source["companies"]:
-        # If the company was already marked as retreating, ignore it (newest source wins)
-        if company in retreating_companies:
-            continue
-
-        if company not in holding_companies:
-            holding_companies[company] = []
-        holding_companies[company].append(source_label)
-
-# Sort companies alphabetically
-sorted_retreating = sorted(retreating_companies.keys())
-sorted_holding = sorted(holding_companies.keys())
-
-# Generate Markdown Table
 def generate_markdown_table():
     table_header = (
         "| Retreating | Sources | Holding the Line | Sources |\n"
@@ -131,9 +97,7 @@ def generate_markdown_table():
 
     return table_header + "\n".join(table_rows) + "\n"
 
-# Generate Markdown for Sources
 def generate_markdown_sources():
-
     # Holding the Line sources
     source_text = "## Holding the line\n"
     for index, source in enumerate(holding_sources, start=1):
@@ -146,13 +110,95 @@ def generate_markdown_sources():
 
     return source_text
 
-# Generate final Markdown
-markdown_output = "# Companies holding on and retreating from DEI"
+class DEISourceManager:
+    def __init__(self, retreating_sources=None, holding_sources=None):
+        self.retreating_sources = retreating_sources or []
+        self.holding_sources = holding_sources or []
+        self.retreating_companies = {}
+        self.holding_companies = {}
+        self.sorted_retreating = []
+        self.sorted_holding = []
+        
+        # Process sources if provided at init
+        if retreating_sources or holding_sources:
+            self.process_sources()
+    
+    def process_sources(self):
+        """Exactly matches the original source processing logic"""
+        self.retreating_companies = {}
+        self.holding_companies = {}
+        
+        # Process retreating sources first
+        for index, source in enumerate(self.retreating_sources, start=1):
+            source_label = f"R{index}"
+            for company in source["companies"]:
+                # If the company exists in Holding, remove it first (newest category wins)
+                if company in self.holding_companies:
+                    del self.holding_companies[company]
 
-markdown_output += f'\n*generated {date.today().strftime("%Y-%m-%d")}*\n'
+                if company not in self.retreating_companies:
+                    self.retreating_companies[company] = []
+                self.retreating_companies[company].append(source_label)
 
+        # Process holding sources
+        for index, source in enumerate(self.holding_sources, start=1):
+            source_label = f"H{index}"
+            for company in source["companies"]:
+                # If the company was already marked as retreating, ignore it (newest source wins)
+                if company in self.retreating_companies:
+                    continue
 
-markdown_output += generate_markdown_table() + "\n" + generate_markdown_sources()
+                if company not in self.holding_companies:
+                    self.holding_companies[company] = []
+                self.holding_companies[company].append(source_label)
 
-# Output Markdown to console
-print(markdown_output)
+        # Sort companies
+        self.sorted_retreating = sorted(self.retreating_companies.keys())
+        self.sorted_holding = sorted(self.holding_companies.keys())
+
+    def generate_markdown_table(self):
+        """Exactly matches the original table generation"""
+        table_header = (
+            "| Retreating | Sources | Holding the Line | Sources |\n"
+            "|------------|---------|------------------|---------|\n"
+        )
+
+        max_len = max(len(self.sorted_retreating), len(self.sorted_holding))
+        table_rows = []
+        for i in range(max_len):
+            retreating_company = self.sorted_retreating[i] if i < len(self.sorted_retreating) else ""
+            retreating_sources = ", ".join(sorted(self.retreating_companies.get(retreating_company, [])))
+
+            holding_company = self.sorted_holding[i] if i < len(self.sorted_holding) else ""
+            holding_sources = ", ".join(sorted(self.holding_companies.get(holding_company, [])))
+
+            table_rows.append(f"| {retreating_company} | {retreating_sources} | {holding_company} | {holding_sources} |")
+
+        return table_header + "\n".join(table_rows) + "\n"
+
+    def generate_markdown_sources(self):
+        """Exactly matches the original source list generation"""
+        # Holding the Line sources
+        source_text = "## Holding the line\n"
+        for index, source in enumerate(self.holding_sources, start=1):
+            source_text += f"\n\nH{index}) ({source['date']}) [{source['title']}]({source['url']})"
+
+        # Retreating sources
+        source_text += "\n\n## Retreating\n"
+        for index, source in enumerate(self.retreating_sources, start=1):
+            source_text += f"\n\nR{index}) ({source['date']}) [{source['title']}]({source['url']})"
+
+        return source_text
+
+    def generate_markdown(self):
+        """Generates the complete markdown output"""
+        output = "# Companies holding on and retreating from DEI\n"
+        output += f'*generated {date.today().strftime("%Y-%m-%d")}*\n\n'
+        output += self.generate_markdown_table() + "\n"
+        output += self.generate_markdown_sources()
+        return output
+
+if __name__ == "__main__":
+    manager = DEISourceManager(retreating_sources, holding_sources)
+    print("Class-based output:")
+    print(manager.generate_markdown())
