@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 
 retreating_sources = [
     {
@@ -128,6 +128,16 @@ class DEISourceManager:
         self.retreating_companies = {}
         self.holding_companies = {}
         
+
+        # Sort sources by date, newest first
+        self.retreating_sources.sort(
+            key=lambda s: datetime.strptime(s["date"], "%Y-%m-%d"),
+            reverse=True
+        )
+        self.holding_sources.sort(
+            key=lambda s: datetime.strptime(s["date"], "%Y-%m-%d"),
+            reverse=True
+        )
         # Process retreating sources first
         for index, source in enumerate(self.retreating_sources, start=1):
             source_label = f"R{index}"
