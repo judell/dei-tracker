@@ -2,6 +2,12 @@
 
 A tool to help maintain a list of companies retreating and holding the line on DEI, according to cited sources.
 
+## Example
+
+![image](https://github.com/user-attachments/assets/af2a5ab6-ebfc-4dad-ad53-768c56a8bba8)
+
+## Updating
+
 To update the table and source list, add to the these structures and rerun dei.py.
 
 ```
