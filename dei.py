@@ -79,8 +79,27 @@ retreating_sources = [
     },
 ]
 
-
 holding_sources = [
+    {
+        "date": "2025-02-20",
+        "title": "Here are eight major companies that have resisted anti-DEI backlash.",
+        "url": "https://www.ebony.com/major-companies-that-are-standing-by-their-dei-programs/",
+        "companies": [
+            "Apple",
+            "Ben & Jerry's",
+            "Cisco",
+            "Costco",
+            "Delta Airlines",
+            "Deutsche Bank",
+            "e.l.f. Beauty",
+            "Goldman Sachs",
+            "JP Morgan Chase",
+            "Microsoft",
+            "Pinterest",
+            "REI Co-op",
+            "Ulta Beauty"
+        ]
+    },
     {
         "date": "2025-02-18",
         "title": "Newsweek: DEI Companies Program List Policies Donald Trump",
@@ -89,7 +108,7 @@ holding_sources = [
             "Apple",
             "Costco",
             "Delta Airlines",
-            "E.L.F. Beauty",
+            "e.l.f Beauty",
             "Meijer",
             "Microsoft",
             "Procter & Gamble",
@@ -158,7 +177,7 @@ holding_sources = [
             "Cleveland Cavaliers",
             "Costco",
             "Delta Airlines",
-            "E.L.F. Beauty",
+            "e.l.f. Beauty",
             "Microsoft",
             "Nasdaq",
             "Pinterest",
