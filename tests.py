@@ -450,6 +450,34 @@ class TestDEIDataConsistency(unittest.TestCase):
             f"- Extra in Markdown: {md_holding - holding}"
         )
 
+    def test_detects_extra_company_in_retreating(self):
+        """
+        Introduces an error by adding an extra company to retreating after processing.
+        Verifies that the test suite correctly detects inconsistencies.
+        """
+
+        self.manager.process_sources()
+
+        # Introduce an error: Add a company that was never in dei.py sources
+        self.manager.retreating_companies["FakeCompany"] = ["R99"]
+
+        retreating = set(self.manager.retreating_companies.keys())
+
+        # Ensure that the test detects the extra company
+        all_source_companies = set()
+        for source in self.dei.retreating_sources:
+            all_source_companies.update(source["companies"])
+
+        for source in self.dei.holding_sources:
+            all_source_companies.update(source["companies"])
+
+        all_categorized = retreating.union(set(self.manager.holding_companies.keys()))
+        extra = all_categorized - all_source_companies
+
+        self.assertNotEqual(len(extra), 0, "Test setup failure: No extra companies introduced")
+        
+        # Assert that the test correctly detects the inconsistency
+        self.assertIn("FakeCompany", extra, "Test failed to detect the extra company in retreating")
 
 if __name__ == '__main__':
    unittest.main()
