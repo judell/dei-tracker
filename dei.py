@@ -2,6 +2,17 @@ from datetime import date, datetime
 
 retreating_sources = [
     {
+        "date": "2025-02-20",
+        "title": "Pepsi Rolling Back Diversity Initiatives",
+        "url": "https://www.msn.com/en-us/money/companies/pepsi-rolling-back-diversity-initiatives-here-are-all-the-companies-cutting-dei-programs/ar-AA1x7MGk",
+        "companies": [
+            "JPMorgan Chase",
+            "Morgan Stanley",
+            "PepsiCo",
+            "Citigroup",
+        ]
+    },
+    {
         "date": "2025-02-17",
         "title": "Forbes: Banks Including JPMorgan Chase and Morgan Stanley Reportedly Cutting Back DEI References",
         "url": "https://www.forbes.com/sites/conormurray/2025/02/17/banks-including-jpmorgan-chase-and-morgan-stanley-reportedly-cutting-back-dei-references-here-are-all-the-companies-rolling-back-dei/",

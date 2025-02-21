@@ -6,6 +6,14 @@ A tool to help maintain a list of companies retreating and holding the line on D
 
 <img width="600" alt="image" src="https://github.com/user-attachments/assets/0c7ebb6c-d0dc-4132-92c8-876fb3c3fc22" />
 
+## Research tip
+
+Use queries like these:
+
+> companies holding the line on dei after:2025-02-18
+
+> companies retreating from dei after:2025-02-18
+
 
 
 ## Updating
