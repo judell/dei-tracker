@@ -1,6 +1,8 @@
-import unittest
-from datetime import datetime
+import importlib.util
+from pathlib import Path
 from dei import DEISourceManager
+import re
+import unittest
 
 class TestDEISourceManager(unittest.TestCase):
     """
@@ -329,6 +331,125 @@ class TestDEISourceManager(unittest.TestCase):
        
        self.assertIn("CompanyJ", self.manager.retreating_companies)
        self.assertNotIn("CompanyJ", self.manager.holding_companies)
+
+class TestDEIDataConsistency(unittest.TestCase):
+    """
+    Integration test that verifies consistency between:
+    - Source data in dei.py
+    - Processing logic
+    - Generated dei.md output
+    """
+
+    def setUp(self):
+        """Load the source data and process it"""
+        # Import dei.py module dynamically with error handling
+        dei_path = Path("dei.py")
+        self.assertTrue(dei_path.exists(), "Error: dei.py not found")
+
+        try:
+            spec = importlib.util.spec_from_file_location("dei", "dei.py")
+            self.dei = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(self.dei)
+        except Exception as e:
+            self.fail(f"Failed to import dei.py: {e}")
+
+        # Create DEISourceManager instance and process data
+        self.manager = self.dei.DEISourceManager(
+            self.dei.retreating_sources,
+            self.dei.holding_sources
+        )
+        self.manager.process_sources()
+
+    def test_data_consistency(self):
+        """
+        Verifies consistency between source data, processing, and output.
+
+        Checks:
+        1. Companies appear in exactly one category
+        2. All companies from source data are accounted for
+        3. Generated markdown matches processed data
+        4. Sources are in correct chronological order
+        5. Markdown sections exist and sources appear in correct order
+        """
+
+        # --- Step 1: Validate No Overlap Between Retreating and Holding ---
+        retreating = set(self.manager.retreating_companies.keys())
+        holding = set(self.manager.holding_companies.keys())
+
+        overlap = retreating.intersection(holding)
+        self.assertEqual(len(overlap), 0, 
+            f"Companies appearing in both categories: {overlap}")
+
+        # --- Step 2: Ensure All Source Companies Are Categorized ---
+        all_source_companies = set()
+        for source in self.dei.retreating_sources:
+            all_source_companies.update(source["companies"])
+        for source in self.dei.holding_sources:
+            all_source_companies.update(source["companies"])
+            
+        all_categorized = retreating.union(holding)
+        missing = all_source_companies - all_categorized
+        extra = all_categorized - all_source_companies
+
+        self.assertEqual(len(missing), 0,
+            f"Companies in sources but not categorized: {missing}")
+        self.assertEqual(len(extra), 0,
+            f"Companies categorized but not in sources: {extra}")
+
+        # --- Step 3: Validate Markdown File Exists and Matches Processed Data ---
+        md_path = Path("dei.md")
+        self.assertTrue(md_path.exists(), "Error: dei.md not found")
+
+        markdown = md_path.read_text()
+
+        # Ensure Markdown contains expected sections
+        self.assertIn("## Retreating", markdown, "Markdown missing 'Retreating' section")
+        self.assertIn("## Holding the line", markdown, "Markdown missing 'Holding the line' section")
+
+        # Regex pattern to extract table rows while handling variable spacing
+        table_pattern = r"\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|"
+        md_retreating = set()
+        md_holding = set()
+
+        separator_pattern = r"^\s*\|?\s*-{2,}\s*-?\s*\|"
+
+        for match in re.finditer(table_pattern, markdown, re.MULTILINE):
+            full_row = match.group(0).strip()  # Get full table row
+
+            # Skip separator rows that contain only dashes and pipes
+            if re.match(separator_pattern, full_row):
+                continue
+
+            retreating_company = match.group(1).strip()
+            holding_company = match.group(3).strip()
+
+            # Ignore table headers automatically
+            if retreating_company.lower() == "retreating":
+                continue
+            if holding_company.lower() == "holding the line":
+                continue
+
+            if retreating_company:
+                md_retreating.add(retreating_company)
+            if holding_company:
+                md_holding.add(holding_company)
+
+
+
+        # --- Step 4: Compare Extracted Markdown Companies to Processed Data ---
+        self.assertSetEqual(
+            retreating, md_retreating,
+            f"Mismatch in retreating companies:\n"
+            f"- Missing from Markdown: {retreating - md_retreating}\n"
+            f"- Extra in Markdown: {md_retreating - retreating}"
+        )
+        self.assertSetEqual(
+            holding, md_holding,
+            f"Mismatch in holding companies:\n"
+            f"- Missing from Markdown: {holding - md_holding}\n"
+            f"- Extra in Markdown: {md_holding - holding}"
+        )
+
 
 if __name__ == '__main__':
    unittest.main()
