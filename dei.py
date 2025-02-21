@@ -230,14 +230,14 @@ def generate_markdown_sources():
     source_text = "## Holding the line\n"
     for index, source in enumerate(holding_sources, start=1):
         source_text += (
-            f"\n\nH{index}) ({source['date']}) [{source['title']}]({source['url']})"
+            f"\n\nH{index}: ({source['date']}) [{source['title']}]({source['url']})"
         )
 
     # Retreating sources
     source_text += "\n\n## Retreating\n"
     for index, source in enumerate(retreating_sources, start=1):
         source_text += (
-            f"\n\nR{index}) ({source['date']}) [{source['title']}]({source['url']})"
+            f"\n\nR{index}: ({source['date']}) [{source['title']}]({source['url']})"
         )
 
     return source_text
