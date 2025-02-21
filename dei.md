@@ -3,44 +3,48 @@
 
 | Retreating | Sources | Holding the Line | Sources |
 |------------|---------|------------------|---------|
-| Amazon | R2 | Abercrombie and Fitch | H2 |
+| Amazon | R2, R3 | Abercrombie and Fitch | H2 |
 | Amtrak | R1 | Adobe | H2 |
-| Apple | R3 | Alliance Health | H2 |
-| Bank of America | R1 | American Airlines | H3 |
-| Boeing | R1 | Ancestry | H2 |
-| Brown-Forman (Jack Daniel's) | R1, R2 | BJ's Wholesale | H2 |
-| Chipotle | R1 | Ben & Jerry's | H2 |
-| Citigroup | R1 | Bering Straits Native Corporation | H2 |
-| Coca-Cola | R1 | Best Buy | H2 |
-| Comcast | R1 | Chick-fil-A | H2 |
-| Costco | R3 | Cigna | H2 |
-| Deloitte | R1 | Cisco | H3, H4 |
-| Delta Airlines | R3 | Cleveland Cavaliers | H3 |
-| Disney | R1 | Deutsche Bank | H2, H4 |
-| Ford Motor Co. | R1, R2 | Dollar Tree | H2 |
-| General Electric (GE) | R1 | E.L.F. Beauty | H1, H3 |
-| Goldman Sachs | R1, R2 | Gap Inc. | H2 |
-| Google | R1, R2 | GoTo Foods | H2 |
-| Harley-Davidson | R1, R2 | HLW | H2 |
-| Intel | R1 | Honda | H2 |
-| JPMorgan Chase | R1 | Johnson & Johnson | H2 |
-| John Deere | R1, R2 | Kroger | H2 |
-| Lowe's | R1, R2 | Logitech | H2 |
-| McDonald's | R1, R2 | Macy's | H2 |
-| Meta (Facebook) | R1, R2 | MassMutual | H2 |
-| Microsoft | R3 | Mastercard | H2 |
-| Molson Coors | R1 | Match Group | H2 |
-| Morgan Stanley | R1 | McKinsey & Company | H2 |
-| NPR | R1 | Meijer | H1, H2 |
-| PBS | R1 | Mitre | H2 |
-| PayPal | R1 | Nasdaq | H3 |
-| PepsiCo | R1 | National Football League | H2 |
-| Smithsonian Institution | R1 | Nike | H2 |
-| Target | R1, R2 | Old Navy | H2 |
-| The FBI | R1 | Philip Morris International | H2 |
-| Tractor Supply | R2 | Pinterest | H2, H3 |
-| Walmart | R1, R2 | Procter & Gamble | H1, H2 |
-| Wells Fargo | R1 | Progressive | H2 |
+| Bank of America | R1 | Alliance Health | H2 |
+| Boeing | R1 | American Airlines | H3 |
+| Brown-Forman (Jack Daniel's) | R1, R2 | Ancestry | H2 |
+| Chipotle | R1 | Apple | H1, H2, H3 |
+| Citigroup | R1 | BJ's Wholesale | H2 |
+| Coca-Cola | R1 | Ben & Jerry's | H2 |
+| Comcast | R1 | Bering Straits Native Corporation | H2 |
+| Deloitte | R1 | Best Buy | H2 |
+| Disney | R1 | Chick-fil-A | H2 |
+| Ford Motor Co. | R1, R2 | Cigna | H2 |
+| General Electric (GE) | R1 | Cisco | H3, H4 |
+| Goldman Sachs | R1, R2 | Cleveland Cavaliers | H3 |
+| Google | R1, R2, R3 | Costco | H1, H3, H4 |
+| Harley-Davidson | R1, R2 | Delta Airlines | H1, H3 |
+| Intel | R1 | Deutsche Bank | H2, H4 |
+| JPMorgan Chase | R1 | Dollar Tree | H2 |
+| John Deere | R1, R2 | E.L.F. Beauty | H1, H3 |
+| Lowe's | R1, R2 | Gap Inc. | H2 |
+| McDonald's | R1, R2, R3 | GoTo Foods | H2 |
+| Meta | R1, R2, R3 | HLW | H2 |
+| Molson Coors | R1 | Honda | H2 |
+| Morgan Stanley | R1 | Johnson & Johnson | H2 |
+| NPR | R1 | Kroger | H2 |
+| PBS | R1 | Logitech | H2 |
+| PayPal | R1 | Macy's | H2 |
+| PepsiCo | R1 | MassMutual | H2 |
+| Smithsonian Institution | R1 | Mastercard | H2 |
+| Target | R1, R2, R3 | Match Group | H2 |
+| The FBI | R1 | McKinsey & Company | H2 |
+| Tractor Supply | R2 | Meijer | H1, H2 |
+| Walmart | R1, R2, R3 | Microsoft | H1, H2, H3 |
+| Wells Fargo | R1 | Mitre | H2 |
+|  |  | Nasdaq | H3 |
+|  |  | National Football League | H2 |
+|  |  | Nike | H2 |
+|  |  | Old Navy | H2 |
+|  |  | Philip Morris International | H2 |
+|  |  | Pinterest | H2, H3 |
+|  |  | Procter & Gamble | H1, H2 |
+|  |  | Progressive | H2 |
 |  |  | Salesforce | H3 |
 |  |  | Sephora | H1, H2 |
 |  |  | Southwest Airlines | H3 |

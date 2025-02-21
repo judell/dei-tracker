@@ -26,7 +26,7 @@ retreating_sources = [
             "JPMorgan Chase",
             "Lowe's",
             "McDonald's",
-            "Meta (Facebook)",
+            "Meta",
             "Molson Coors",
             "Morgan Stanley",
             "NPR",
@@ -54,7 +54,7 @@ retreating_sources = [
             "John Deere",
             "Lowe's",
             "McDonald's",
-            "Meta (Facebook)",
+            "Meta",
             "Target",
             "Tractor Supply",
             "Walmart",
@@ -64,9 +64,10 @@ retreating_sources = [
         "date": "2025-02-11",
         "title": "TechTarget: What Companies Are Rolling Back DEI Policies",
         "url": "https://www.techtarget.com/whatis/feature/What-companies-are-rolling-back-DEI-policies",
-        "companies": ["Apple", "Costco", "Delta Airlines", "Microsoft"],
+        "companies": ["Amazon", "Google", "McDonald's", "Meta", "Target", "Walmart"],
     },
 ]
+
 
 holding_sources = [
     {
@@ -165,6 +166,10 @@ holding_sources = [
 
 
 def generate_markdown_table():
+
+    sorted_retreating = sorted(retreating_sources.keys())  
+    sorted_holding = sorted(holding_sources.keys())  
+
     table_header = (
         "| Retreating | Sources | Holding the Line | Sources |\n"
         "|------------|---------|------------------|---------|\n"
@@ -175,11 +180,13 @@ def generate_markdown_table():
     for i in range(max_len):
         retreating_company = sorted_retreating[i] if i < len(sorted_retreating) else ""
         retreating_sources = ", ".join(
-            sorted(retreating_companies.get(retreating_company, []))
+            sorted(retreating_sources.get(retreating_company, []))
         )
 
         holding_company = sorted_holding[i] if i < len(sorted_holding) else ""
-        holding_sources = ", ".join(sorted(holding_companies.get(holding_company, [])))
+        holding_sources = ", ".join(
+            sorted(holding_sources.get(holding_company, []))
+        )
 
         table_rows.append(
             f"| {retreating_company} | {retreating_sources} | {holding_company} | {holding_sources} |"
