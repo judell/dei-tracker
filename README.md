@@ -14,11 +14,15 @@ Use queries like these:
 
 > companies retreating from dei after:2025-02-18
 
-
-
 ## Updating
 
-To update the table and source list, add to the these structures and rerun dei.py.
+To update the table and source list:
+
+1. Add to `retreating_sources` and/or `holding_sources`
+
+2. `python dei.py`
+
+3. `python -m unittest -v tests.py`
 
 ```
 retreating_sources = [
