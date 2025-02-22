@@ -1,5 +1,5 @@
 # Companies holding on and retreating from DEI
-*This is a point-in-time snapshot, generated on 2025-02-20, derived from the listed sources. See README for how to update.*
+*This is a point-in-time snapshot, generated on 2025-02-21, derived from the listed sources. See README for how to update.*
 
 | Retreating | Sources | Holding the Line | Sources |
 |------------|---------|------------------|---------|
@@ -54,8 +54,7 @@
 |  |  | Ulta Beauty | H1, H3 |
 |  |  | United Airlines | H4 |
 |  |  | Wilson Sonsini Goodrich & Rosati | H3 |
-|  |  | e.l.f Beauty | H2 |
-|  |  | e.l.f. Beauty | H1, H4 |
+|  |  | e.l.f. Beauty | H1, H2, H4 |
 
 
 

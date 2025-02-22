@@ -22,7 +22,7 @@ To update the table and source list:
 
 2. `python dei.py`
 
-3. `python -m unittest -v tests.py`
+3. `python -m unittest tests.py`
 
 ```
 retreating_sources = [

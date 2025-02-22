@@ -10,7 +10,7 @@ retreating_sources = [
             "Morgan Stanley",
             "PepsiCo",
             "Citigroup",
-        ]
+        ],
     },
     {
         "date": "2025-02-17",
@@ -97,8 +97,8 @@ holding_sources = [
             "Microsoft",
             "Pinterest",
             "REI Co-op",
-            "Ulta Beauty"
-        ]
+            "Ulta Beauty",
+        ],
     },
     {
         "date": "2025-02-18",
@@ -108,7 +108,7 @@ holding_sources = [
             "Apple",
             "Costco",
             "Delta Airlines",
-            "e.l.f Beauty",
+            "e.l.f. Beauty",
             "Meijer",
             "Microsoft",
             "Procter & Gamble",
@@ -195,54 +195,6 @@ holding_sources = [
 ]
 
 
-def generate_markdown_table():
-
-    sorted_retreating = sorted(retreating_sources.keys())  
-    sorted_holding = sorted(holding_sources.keys())  
-
-    table_header = (
-        "| Retreating | Sources | Holding the Line | Sources |\n"
-        "|------------|---------|------------------|---------|\n"
-    )
-
-    max_len = max(len(sorted_retreating), len(sorted_holding))
-    table_rows = []
-    for i in range(max_len):
-        retreating_company = sorted_retreating[i] if i < len(sorted_retreating) else ""
-        retreating_sources = ", ".join(
-            sorted(retreating_sources.get(retreating_company, []))
-        )
-
-        holding_company = sorted_holding[i] if i < len(sorted_holding) else ""
-        holding_sources = ", ".join(
-            sorted(holding_sources.get(holding_company, []))
-        )
-
-        table_rows.append(
-            f"| {retreating_company} | {retreating_sources} | {holding_company} | {holding_sources} |"
-        )
-
-    return table_header + "\n".join(table_rows) + "\n"
-
-
-def generate_markdown_sources():
-    # Holding the Line sources
-    source_text = "## Holding the line\n"
-    for index, source in enumerate(holding_sources, start=1):
-        source_text += (
-            f"\n\nH{index}: ({source['date']}) [{source['title']}]({source['url']})"
-        )
-
-    # Retreating sources
-    source_text += "\n\n## Retreating\n"
-    for index, source in enumerate(retreating_sources, start=1):
-        source_text += (
-            f"\n\nR{index}: ({source['date']}) [{source['title']}]({source['url']})"
-        )
-
-    return source_text
-
-
 class DEISourceManager:
     def __init__(self, retreating_sources=None, holding_sources=None):
         self.retreating_sources = retreating_sources or []
@@ -325,7 +277,6 @@ class DEISourceManager:
         return table_header + "\n".join(table_rows) + "\n"
 
     def generate_markdown_sources(self):
-
         # Retreating sources
         source_text = "\n\n## Retreating\n"
         for index, source in enumerate(self.retreating_sources, start=1):
@@ -350,7 +301,132 @@ class DEISourceManager:
         output += self.generate_markdown_sources()
         return output
 
+    def generate_html(self):
+        """Generates the complete HTML output with embedded CSS for styling"""
+        html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companies and DEI Initiatives</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .timestamp {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .sources {
+            margin-top: 40px;
+        }
+        .sources h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+        }
+        .source-item {
+            margin: 15px 0;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+"""
+
+        # Add title and timestamp
+        html += f"<h1>Companies holding on and retreating from DEI</h1>\n"
+        html += f'<p class="timestamp">This is a point-in-time snapshot, generated on {date.today().strftime("%Y-%m-%d")}, derived from the listed sources. See README for how to update.</p>\n'
+
+        # Generate table
+        html += "<table>\n"
+        html += "<tr><th>Retreating</th><th>Sources</th><th>Holding the Line</th><th>Sources</th></tr>\n"
+
+        max_len = max(len(self.sorted_retreating), len(self.sorted_holding))
+        for i in range(max_len):
+            retreating_company = (
+                self.sorted_retreating[i] if i < len(self.sorted_retreating) else ""
+            )
+            retreating_sources = ", ".join(
+                sorted(self.retreating_companies.get(retreating_company, []))
+            )
+
+            holding_company = (
+                self.sorted_holding[i] if i < len(self.sorted_holding) else ""
+            )
+            holding_sources = ", ".join(
+                sorted(self.holding_companies.get(holding_company, []))
+            )
+
+            html += f"<tr><td>{retreating_company}</td><td>{retreating_sources}</td><td>{holding_company}</td><td>{holding_sources}</td></tr>\n"
+
+        html += "</table>\n"
+
+        # Add sources
+        html += '<div class="sources">\n'
+
+        # Retreating sources
+        html += "<h2>Retreating</h2>\n"
+        for index, source in enumerate(self.retreating_sources, start=1):
+            html += f'<div class="source-item">\n'
+            html += f'R{index}) ({source["date"]}) <a href="{source["url"]}">{source["title"]}</a>\n'
+            html += "</div>\n"
+
+        # Holding sources
+        html += "<h2>Holding the Line</h2>\n"
+        for index, source in enumerate(self.holding_sources, start=1):
+            html += f'<div class="source-item">\n'
+            html += f'H{index}) ({source["date"]}) <a href="{source["url"]}">{source["title"]}</a>\n'
+            html += "</div>\n"
+
+        html += "</div>\n"
+        html += "</body>\n</html>"
+
+        return html
+
+    def write_outputs(self, markdown_file="dei.md", html_file="index.html"):
+        """Writes both markdown and HTML outputs to files"""
+        # Write markdown
+        with open(markdown_file, "w", encoding="utf-8") as f:
+            f.write(self.generate_markdown())
+
+        # Write HTML
+        with open(html_file, "w", encoding="utf-8") as f:
+            f.write(self.generate_html())
+
 
 if __name__ == "__main__":
     manager = DEISourceManager(retreating_sources, holding_sources)
-    print(manager.generate_markdown())
+    manager.write_outputs()
