@@ -235,6 +235,7 @@ class DEISourceManager:
         self.holding_companies = {}
         self.sorted_retreating = []
         self.sorted_holding = []
+        self.subtitle = f'This is a point-in-time snapshot, generated on {date.today().strftime("%Y-%m-%d")}, derived from the listed sources. See <a href="https://github.com/judell/dei-tracker">the repo</a> for how to update.\n\n'
 
         # Process sources if provided at init
         if retreating_sources or holding_sources:
@@ -328,7 +329,7 @@ class DEISourceManager:
     def generate_markdown(self):
         """Generates the complete markdown output"""
         output = "# Companies holding on and retreating from DEI\n"
-        output += f'*This is a point-in-time snapshot, generated on {date.today().strftime("%Y-%m-%d")}, derived from the listed sources. See README for how to update.*\n\n'
+        output += self.subtitle
         output += self.generate_markdown_table() + "\n"
         output += self.generate_markdown_sources()
         return output
@@ -402,7 +403,7 @@ class DEISourceManager:
 
         # Add title and timestamp
         html += f"<h1>Companies holding on and retreating from DEI</h1>\n"
-        html += f'<p class="timestamp">This is a point-in-time snapshot, generated on {date.today().strftime("%Y-%m-%d")}, derived from the listed sources. See README for how to update.</p>\n'
+        html += self.subtitle
 
         # Generate table
         html += "<table>\n"

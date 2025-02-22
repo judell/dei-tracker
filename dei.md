@@ -1,5 +1,5 @@
 # Companies holding on and retreating from DEI
-*This is a point-in-time snapshot, generated on 2025-02-21, derived from the listed sources. See README for how to update.*
+This is a point-in-time snapshot, generated on 2025-02-21, derived from the listed sources. See <a href="https://github.com/judell/dei-tracker">the repo</a> for how to update.
 
 | Retreating | Sources | Holding the Line | Sources |
 |------------|---------|------------------|---------|
