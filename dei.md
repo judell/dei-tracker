@@ -3,58 +3,58 @@
 
 | Retreating | Sources | Holding the Line | Sources |
 |------------|---------|------------------|---------|
-| Amazon | R5, R6 | Abercrombie and Fitch | H4 |
-| Amtrak | R4 | Adobe | H4 |
-| Bank of America | R4 | Alliance Health | H4 |
-| Boeing | R4 | American Airlines | H5 |
-| Brown-Forman (Jack Daniel's) | R4, R5 | Ancestry | H4 |
-| CZI | R3 | Apple | H2, H3, H4, H5 |
-| Chipotle | R4 | BJ's Wholesale | H4 |
-| Citigroup | R2, R4 | Ben & Jerry's | H2, H4 |
-| Coca-Cola | R4 | Bering Straits Native Corporation | H4 |
-| Comcast | R4 | Best Buy | H4 |
-| Deloitte | R4 | Chick-fil-A | H4 |
-| Disney | R4 | Cigna | H4 |
-| Ford Motor Co. | R4, R5 | Cisco | H2, H5, H6 |
-| General Electric (GE) | R4 | Cleveland Cavaliers | H5 |
-| Goldman Sachs | R4, R5 | Costco | H2, H3, H5, H6 |
-| Google | R4, R5, R6 | Delta Airlines | H2, H3, H5 |
-| Harley-Davidson | R4, R5 | Deutsche Bank | H2, H4, H6 |
-| Intel | R4 | Dollar Tree | H4 |
-| JPMorgan Chase | R2, R4 | Gap Inc. | H4 |
-| John Deere | R4, R5 | GoTo Foods | H4 |
-| KPMG US | R1 | HLW | H4 |
-| Lowe's | R4, R5 | Honda | H4 |
-| McDonald's | R4, R5, R6 | JP Morgan Chase | H2 |
-| Meta | R4, R5, R6 | Johnson & Johnson | H4 |
-| Molson Coors | R4 | Kroger | H4 |
-| Morgan Stanley | R2, R4 | Logitech | H4 |
-| NPR | R4 | Macy's | H4 |
-| PBS | R4 | MassMutual | H4 |
-| PayPal | R4 | Mastercard | H1, H4 |
-| PepsiCo | R2, R4 | Match Group | H4 |
-| Smithsonian Institution | R4 | McKinsey & Company | H4 |
-| Target | R4, R5, R6 | Meijer | H3, H4 |
-| The FBI | R4 | Microsoft | H2, H3, H4, H5 |
-| Tractor Supply | R5 | Mitre | H4 |
-| Walmart | R4, R5, R6 | Nasdaq | H5 |
-| Wells Fargo | R4 | National Football League | H4 |
-|  |  | Nike | H4 |
-|  |  | Old Navy | H4 |
-|  |  | Philip Morris International | H4 |
-|  |  | Pinterest | H2, H4, H5 |
-|  |  | Procter & Gamble | H3, H4 |
-|  |  | Progressive | H4 |
-|  |  | REI Co-op | H2 |
-|  |  | Salesforce | H5 |
-|  |  | Sephora | H3, H4 |
-|  |  | Southwest Airlines | H5 |
-|  |  | TJX Companies | H4 |
-|  |  | Tiffany & Co | H4 |
-|  |  | Ulta Beauty | H2, H4 |
-|  |  | United Airlines | H5 |
-|  |  | Wilson Sonsini Goodrich & Rosati | H4 |
-|  |  | e.l.f. Beauty | H2, H3, H5 |
+| Amazon | R5, R6 | Abercrombie and Fitch | H5 |
+| Amtrak | R4 | Adobe | H5 |
+| Bank of America | R4 | Alliance Health | H5 |
+| Boeing | R4 | American Airlines | H6 |
+| Brown-Forman (Jack Daniel's) | R4, R5 | Ancestry | H5 |
+| CZI | R3 | Apple | H3, H4, H5, H6 |
+| Chipotle | R4 | BJ's Wholesale | H5 |
+| Citigroup | R2, R4 | Ben & Jerry's | H3, H5 |
+| Coca-Cola | R4 | Bering Straits Native Corporation | H5 |
+| Comcast | R4 | Best Buy | H5 |
+| Deloitte | R4 | Chick-fil-A | H5 |
+| Disney | R4 | Cigna | H5 |
+| Ford Motor Co. | R4, R5 | Cisco | H3, H6, H7 |
+| General Electric (GE) | R4 | Cleveland Cavaliers | H6 |
+| Goldman Sachs | R4, R5 | Costco | H3, H4, H6, H7 |
+| Google | R4, R5, R6 | Delta Airlines | H3, H4, H6 |
+| Harley-Davidson | R4, R5 | Deutsche Bank | H3, H5, H7 |
+| Intel | R4 | Dollar Tree | H5 |
+| JPMorgan Chase | R2, R4 | Gap Inc. | H5 |
+| John Deere | R4, R5 | GoTo Foods | H5 |
+| KPMG US | R1 | HLW | H5 |
+| Lowe's | R4, R5 | Honda | H5 |
+| McDonald's | R4, R5, R6 | JP Morgan Chase | H3 |
+| Meta | R4, R5, R6 | Johnson & Johnson | H5 |
+| Molson Coors | R4 | Kroger | H5 |
+| Morgan Stanley | R2, R4 | Logitech | H5 |
+| NPR | R4 | Macy's | H5 |
+| PBS | R4 | MassMutual | H5 |
+| PayPal | R4 | Mastercard | H1, H5 |
+| PepsiCo | R2, R4 | Match Group | H5 |
+| Smithsonian Institution | R4 | McKinsey & Company | H5 |
+| Target | R4, R5, R6 | Meijer | H4, H5 |
+| The FBI | R4 | Microsoft | H3, H4, H5, H6 |
+| Tractor Supply | R5 | Mitre | H5 |
+| Walmart | R4, R5, R6 | Nasdaq | H6 |
+| Wells Fargo | R4 | National Football League | H5 |
+|  |  | Nike | H5 |
+|  |  | Old Navy | H5 |
+|  |  | Philip Morris International | H5 |
+|  |  | Pinterest | H3, H5, H6 |
+|  |  | Procter & Gamble | H4, H5 |
+|  |  | Progressive | H5 |
+|  |  | REI Co-op | H3 |
+|  |  | Salesforce | H6 |
+|  |  | Sephora | H4, H5 |
+|  |  | Southwest Airlines | H6 |
+|  |  | TJX Companies | H5 |
+|  |  | Tiffany & Co | H5 |
+|  |  | Ulta Beauty | H3, H5 |
+|  |  | United Airlines | H6 |
+|  |  | Wilson Sonsini Goodrich & Rosati | H5 |
+|  |  | e.l.f. Beauty | H3, H4, H6 |
 
 
 
@@ -78,12 +78,14 @@ R6) (2025-02-11) [TechTarget: What Companies Are Rolling Back DEI Policies](http
 
 H1) (2025-02-21) [Mastercard diversity page (accessed 2025-02-21](https://www.mastercard.us/en-us/vision/who-we-are/diversity-inclusion.html)
 
-H2) (2025-02-20) [Here are eight major companies that have resisted anti-DEI backlash.](https://www.ebony.com/major-companies-that-are-standing-by-their-dei-programs/)
+H2) (2025-02-21) [Coca-Cola warns of potential negative impact from DEI changes (ed: waffling)](https://fortune.com/2025/02/21/coca-cola-warns-negative-impact-dei-changes/)
 
-H3) (2025-02-18) [Newsweek: DEI Companies Program List Policies Donald Trump](https://www.newsweek.com/dei-companies-program-list-policies-donald-trump-2032960)
+H3) (2025-02-20) [Here are eight major companies that have resisted anti-DEI backlash.](https://www.ebony.com/major-companies-that-are-standing-by-their-dei-programs/)
 
-H4) (2025-02-17) [Report: 46 Companies Sticking With DEI](https://buildremote.co/companies/keeping-dei/)
+H4) (2025-02-18) [Newsweek: DEI Companies Program List Policies Donald Trump](https://www.newsweek.com/dei-companies-program-list-policies-donald-trump-2032960)
 
-H5) (2025-02-04) [The Root: A List of Companies That Continue to Support DEI](https://www.theroot.com/a-list-of-companies-that-continue-to-support-dei-1851755249)
+H5) (2025-02-17) [Report: 46 Companies Sticking With DEI](https://buildremote.co/companies/keeping-dei/)
 
-H6) (2025-01-31) [Business Insider: Companies Supporting DEI Efforts - CEO Comments](https://www.businessinsider.com/companies-supporting-dei-efforts-ceo-comments-2025-1)
+H6) (2025-02-04) [The Root: A List of Companies That Continue to Support DEI](https://www.theroot.com/a-list-of-companies-that-continue-to-support-dei-1851755249)
+
+H7) (2025-01-31) [Business Insider: Companies Supporting DEI Efforts - CEO Comments](https://www.businessinsider.com/companies-supporting-dei-efforts-ceo-comments-2025-1)
