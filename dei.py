@@ -235,7 +235,7 @@ class DEISourceManager:
         self.holding_companies = {}
         self.sorted_retreating = []
         self.sorted_holding = []
-        self.title = "<h1>Companies holding on and retreating from DEI</h1>"
+        self.title = "<h1>Companies holding on and retreating from DEI</h1>\n"
         self.subtitle = f'This is a point-in-time snapshot, generated on {date.today().strftime("%Y-%m-%d")}, derived from the listed sources. See <a href="https://github.com/judell/dei-tracker">the repo</a> for how to update.\n\n'
 
         # Process sources if provided at init
