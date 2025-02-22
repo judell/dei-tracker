@@ -344,9 +344,10 @@ class DEISourceManager:
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
             max-width: 1200px;
             margin: 0 auto;
+            margin-left: .5in;
+            margin-right: .5in;
             padding: 20px;
             color: #333;
         }
@@ -363,6 +364,7 @@ class DEISourceManager:
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            line-height: .5;
         }
         th, td {
             border: 1px solid #ddd;
