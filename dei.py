@@ -2,6 +2,22 @@ from datetime import date, datetime
 
 retreating_sources = [
     {
+        "date": "2025-02-21",
+        "title": "Another DEI rollback as KPMG US ends strategy aimed at underrepresented groups",
+        "url": "https://www.businessinsider.com/kpmg-us-rolls-back-dei-strategy-big-four-trump-2025-2",
+        "companies": [
+            "KPMG US",
+        ],
+    },
+    {
+        "date": "2025-02-19",
+        "title": "Mark Zuckerberg’s charity guts DEI after assuring staff it would continue",
+        "url": "https://www.theguardian.com/technology/2025/feb/19/mark-zuckerberg-chan-dei",
+        "companies": [
+            "CZI",
+        ],
+    },
+    {
         "date": "2025-02-20",
         "title": "Pepsi Rolling Back Diversity Initiatives",
         "url": "https://www.msn.com/en-us/money/companies/pepsi-rolling-back-diversity-initiatives-here-are-all-the-companies-cutting-dei-programs/ar-AA1x7MGk",
@@ -80,6 +96,22 @@ retreating_sources = [
 ]
 
 holding_sources = [
+    {
+        "date": "2025-02-21",
+        "title": "Mastercard diversity page (accessed 2025-02-21",
+        "url": "https://www.mastercard.us/en-us/vision/who-we-are/diversity-inclusion.html",
+        "companies": [
+            "Mastercard",
+        ],
+    },
+    {
+        "date": "2025-02-21",
+        "title": "Coca-Cola warns of potential negative impact from DEI changes (ed: waffling)",
+        "url": "https://fortune.com/2025/02/21/coca-cola-warns-negative-impact-dei-changes/",
+        "companies": [
+            "Coca-Cola",
+        ],
+    },
     {
         "date": "2025-02-20",
         "title": "Here are eight major companies that have resisted anti-DEI backlash.",
