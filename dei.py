@@ -268,6 +268,10 @@ class DEISourceManager:
             self.process_sources()
 
     def process_sources(self):
+        """
+        Processes sources, allowing companies to appear in both categories
+        if they've been mentioned in both.
+        """
         self.retreating_companies = {}
         self.holding_companies = {}
 
@@ -278,14 +282,11 @@ class DEISourceManager:
         self.holding_sources.sort(
             key=lambda s: datetime.strptime(s["date"], "%Y-%m-%d"), reverse=True
         )
-        # Process retreating sources first
+
+        # Process retreating sources
         for index, source in enumerate(self.retreating_sources, start=1):
             source_label = f"R{index}"
             for company in source["companies"]:
-                # If the company exists in Holding, remove it first (newest category wins)
-                if company in self.holding_companies:
-                    del self.holding_companies[company]
-
                 if company not in self.retreating_companies:
                     self.retreating_companies[company] = []
                 self.retreating_companies[company].append(source_label)
@@ -294,17 +295,38 @@ class DEISourceManager:
         for index, source in enumerate(self.holding_sources, start=1):
             source_label = f"H{index}"
             for company in source["companies"]:
-                # If the company was already marked as retreating, ignore it (newest source wins)
-                if company in self.retreating_companies:
-                    continue
-
                 if company not in self.holding_companies:
                     self.holding_companies[company] = []
                 self.holding_companies[company].append(source_label)
 
-        # Sort companies
+        # Sort companies alphabetically
         self.sorted_retreating = sorted(self.retreating_companies.keys())
         self.sorted_holding = sorted(self.holding_companies.keys())
+
+        def _get_all_companies(self):
+            """Helper to get all unique companies from all sources"""
+            companies = set()
+            for source in self.retreating_sources:
+                companies.update(source["companies"])
+            for source in self.holding_sources:
+                companies.update(source["companies"])
+            return companies
+            def generate_markdown_sources(self):
+                # Retreating sources
+                source_text = "\n\n## Retreating\n"
+                for index, source in enumerate(self.retreating_sources, start=1):
+                    source_text += (
+                        f"\n\nR{index}) ({source['date']}) [{source['title']}]({source['url']})"
+                    )
+
+                # Holding the Line sources
+                source_text += "\n\n## Holding the line\n"
+                for index, source in enumerate(self.holding_sources, start=1):
+                    source_text += (
+                        f"\n\nH{index}) ({source['date']}) [{source['title']}]({source['url']})"
+                    )
+
+                return source_text
 
     def generate_markdown_table(self):
         table_header = (
