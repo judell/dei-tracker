@@ -47,11 +47,7 @@ This is the kind of gruntwork they can handle, the results are easy to verify, i
 
 To update the table and source list:
 
-1. Add to `retreating_sources` and/or `holding_sources`
-
-2. `python dei.py`
-
-3. `python -m unittest tests.py`
+### Add to `retreating_sources` and/or `holding_sources`
 
 ```
 retreating_sources = [
@@ -89,4 +85,32 @@ holding_sources = [
         ...
     }
 ]
+```
+### Generate markdown and html
+
+```
+python3 dei.py
+```
+
+### Test
+
+```
+./run-test.sh
+
+Note: 6 companies appear in both categories:
+  - Citigroup: Newer in Retreating
+  - Coca-Cola: Newer in Holding
+  - Goldman Sachs: Newer in Holding
+  - JPMorgan Chase: Newer in Holding
+  - John Deere: Newer in Holding
+  - PepsiCo: Newer in Retreating
+
+New companies as of the most recent date:
+  - Retreating (2025-02-21): ['KPMG US']
+  - Holding (2025-02-28): ['John Deere', "Francesca's", 'Lush', 'Patagonia']
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.004s
+
+OK
 ```
