@@ -98,6 +98,15 @@ retreating_sources = [
 holding_sources = [
     {
         "date": "2025-02-28",
+        "title": "Companies may be rolling back their diversity policies but investors keep voting down anti-DEI shareholder proposals",
+        "url": "https://finance.yahoo.com/news/companies-may-rolling-back-diversity-130000304.html",
+        "companies": [
+            "Apple",
+            "John Deere"
+        ],
+    },
+    {
+        "date": "2025-02-28",
         "title": "These U.S. Companies Are Not Ditching DEI Amid Trump’s Crackdown",
         "url": "https://time.com/7261857/us-companies-keep-dei-initiatives-list-trump-diversity-order-crackdown/",
         "companies": [
