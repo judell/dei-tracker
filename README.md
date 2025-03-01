@@ -6,13 +6,42 @@ A tool to help maintain a list of companies retreating and holding the line on D
 
 <img width="600" alt="image" src="https://github.com/user-attachments/assets/0c7ebb6c-d0dc-4132-92c8-876fb3c3fc22" />
 
-## Research tip
+## Research tips
+
+### Search
 
 Use queries like these:
 
 > companies holding the line on dei after:2025-02-18
 
 > companies retreating from dei after:2025-02-18
+
+### Consolidation
+
+#### How not to use LLMs
+
+Don't expect them to do the research for you, the results will take too much time to check.
+
+#### How to use LLMs
+
+When you find a page like [this](https://time.com/7261857/us-companies-keep-dei-initiatives-list-trump-diversity-order-crackdown/), paste the text into Claude and/or ChatGPT and ask for results like this:
+
+```json
+"companies": [
+    "Apple",
+    "Ben & Jerry's",
+    "Costco",
+    "Delta Airlines",
+    "Francesca's",
+    "JPMorgan Chase",
+    "Lush",
+    "Microsoft",
+    "Patagonia",
+],
+```
+
+This is the kind of gruntwork they can handle, the results are easy to verify, it saves you time and keystrokes.
+
 
 ## Updating
 
@@ -57,7 +86,7 @@ holding_sources = [
         ]
     },
     {
-        ... 
+        ...
     }
 ]
 ```
