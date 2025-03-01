@@ -171,12 +171,6 @@ class TestDEISourceManager(unittest.TestCase):
             {"R1", "R2"}
         )
 
-import importlib.util
-from pathlib import Path
-import re
-import unittest
-from datetime import datetime as dt
-
 class TestDEIDataConsistency(unittest.TestCase):
     """
     Integration test that verifies consistency between:
@@ -212,6 +206,7 @@ class TestDEIDataConsistency(unittest.TestCase):
         Checks:
         1. Companies can appear in both retreating and holding categories
         2. Source references for companies are correctly preserved
+        3. Provides insights into category dynamics
         """
         # Collect all source references for each company
         retreating_source_refs = {}
@@ -292,6 +287,54 @@ class TestDEIDataConsistency(unittest.TestCase):
         for category_info in sorted(overlap_categories):
             print(f"  - {category_info}")
 
+        # Find new companies in each category
+        max_retreating_date = max(
+            dt.strptime(source['date'], "%Y-%m-%d")
+            for source in self.dei.retreating_sources
+        )
+        max_holding_date = max(
+            dt.strptime(source['date'], "%Y-%m-%d")
+            for source in self.dei.holding_sources
+        )
+
+        # Get companies in the most recent sources
+        latest_retreating_sources = [
+            source for source in self.dei.retreating_sources
+            if dt.strptime(source['date'], "%Y-%m-%d") == max_retreating_date
+        ]
+        latest_holding_sources = [
+            source for source in self.dei.holding_sources
+            if dt.strptime(source['date'], "%Y-%m-%d") == max_holding_date
+        ]
+
+        # Collect all companies from previous sources
+        previous_retreating_companies = set()
+        previous_holding_companies = set()
+
+        for source in self.dei.retreating_sources:
+            if dt.strptime(source['date'], "%Y-%m-%d") < max_retreating_date:
+                previous_retreating_companies.update(source['companies'])
+
+        for source in self.dei.holding_sources:
+            if dt.strptime(source['date'], "%Y-%m-%d") < max_holding_date:
+                previous_holding_companies.update(source['companies'])
+
+        # Find new companies on the most recent date
+        new_retreating_companies = [
+            company for source in latest_retreating_sources
+            for company in source['companies']
+            if company not in previous_retreating_companies
+        ]
+        new_holding_companies = [
+            company for source in latest_holding_sources
+            for company in source['companies']
+            if company not in previous_holding_companies
+        ]
+
+        print(f"\nNew companies as of the most recent date:")
+        print(f"  - Retreating ({max_retreating_date.strftime('%Y-%m-%d')}): {new_retreating_companies}")
+        print(f"  - Holding ({max_holding_date.strftime('%Y-%m-%d')}): {new_holding_companies}")
+
     def test_markdown_consistency(self):
         """
         Verifies that the generated markdown reflects the processed data.
@@ -347,6 +390,9 @@ class TestDEIDataConsistency(unittest.TestCase):
             f"- Missing from Markdown: {holding - md_holding}\n"
             f"- Extra in Markdown: {md_holding - holding}"
         )
+
+if __name__ == '__main__':
+   unittest.main()
 
 if __name__ == '__main__':
    unittest.main()
