@@ -257,7 +257,8 @@ class TestDEIDataConsistency(unittest.TestCase):
         overlap = companies_in_retreating.intersection(companies_in_holding)
 
         # Collect dates for sources mentioning these companies
-        overlap_categories = []
+        newer_in_retreating = []
+        newer_in_holding = []
         for company in overlap:
             # Find the most recent date in retreating and holding sources
             retreating_dates = [
@@ -275,17 +276,19 @@ class TestDEIDataConsistency(unittest.TestCase):
             max_retreating_date = max(retreating_dates) if retreating_dates else dt.min
             max_holding_date = max(holding_dates) if holding_dates else dt.min
 
-            newer_category = (
-                "Retreating" if max_retreating_date > max_holding_date else
-                "Holding" if max_holding_date > max_retreating_date else
-                "Same Date"
-            )
+            if max_retreating_date > max_holding_date:
+                newer_in_retreating.append(company)
+            elif max_holding_date > max_retreating_date:
+                newer_in_holding.append(company)
 
-            overlap_categories.append(f"{company}: Newer in {newer_category}")
+        print(f"\n{len(overlap)} companies appear in both categories: ")
+        print(f"\n{len(newer_in_retreating)} newer in retreating")
+        for company in sorted(newer_in_retreating):
+            print(f"* {company}")
 
-        print(f"\nNote: {len(overlap)} companies appear in both categories:")
-        for category_info in sorted(overlap_categories):
-            print(f"  - {category_info}")
+        print(f"\n{len(newer_in_holding)} newer in holding")
+        for company in sorted(newer_in_holding):
+            print(f"* {company}")
 
         # Find new companies in each category
         max_retreating_date = max(
@@ -334,6 +337,29 @@ class TestDEIDataConsistency(unittest.TestCase):
         print(f"\nNew companies as of the most recent date:")
         print(f"  - Retreating ({max_retreating_date.strftime('%Y-%m-%d')}): {new_retreating_companies}")
         print(f"  - Holding ({max_holding_date.strftime('%Y-%m-%d')}): {new_holding_companies}")
+
+        # Cross-reference new companies
+        # Check which new holding companies were in previous retreating sources
+        new_h_in_previous_r = [
+            company for company in new_holding_companies
+            if company in previous_retreating_companies
+        ]
+
+        # Check which new retreating companies were in previous holding sources
+        new_r_in_previous_h = [
+            company for company in new_retreating_companies
+            if company in previous_holding_companies
+        ]
+
+        if new_h_in_previous_r:
+            print("\nNew holding companies previously in retreating:")
+            for company in new_h_in_previous_r:
+                print(f"* {company}")
+
+        if new_r_in_previous_h:
+            print("\nNew retreating companies previously in holding:")
+            for company in new_r_in_previous_h:
+                print(f"* {company}")
 
     def test_markdown_consistency(self):
         """
@@ -393,6 +419,5 @@ class TestDEIDataConsistency(unittest.TestCase):
 
 if __name__ == '__main__':
    unittest.main()
-
 if __name__ == '__main__':
    unittest.main()

@@ -97,17 +97,24 @@ python3 dei.py
 ```
 ./run-test.sh
 
-Note: 6 companies appear in both categories:
-  - Citigroup: Newer in Retreating
-  - Coca-Cola: Newer in Holding
-  - Goldman Sachs: Newer in Holding
-  - JPMorgan Chase: Newer in Holding
-  - John Deere: Newer in Holding
-  - PepsiCo: Newer in Retreating
+6 companies appear in both categories:
+
+2 newer in retreating
+* Citigroup
+* PepsiCo
+
+4 newer in holding
+* Coca-Cola
+* Goldman Sachs
+* JPMorgan Chase
+* John Deere
 
 New companies as of the most recent date:
   - Retreating (2025-02-21): ['KPMG US']
   - Holding (2025-02-28): ['John Deere', "Francesca's", 'Lush', 'Patagonia']
+
+New holding companies previously in retreating:
+* John Deere
 ........
 ----------------------------------------------------------------------
 Ran 8 tests in 0.004s
