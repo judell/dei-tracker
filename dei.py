@@ -97,6 +97,22 @@ retreating_sources = [
 
 holding_sources = [
     {
+        "date": "2025-02-28",
+        "title": "These U.S. Companies Are Not Ditching DEI Amid Trump’s Crackdown",
+        "url": "https://time.com/7261857/us-companies-keep-dei-initiatives-list-trump-diversity-order-crackdown/",
+        "companies": [
+            "Apple",
+            "Ben & Jerry's",
+            "Costco",
+            "Delta Airlines",
+            "Francesca's",
+            "JPMorgan Chase",
+            "Lush",
+            "Microsoft",
+            "Patagonia",
+        ],
+    },
+    {
         "date": "2025-02-21",
         "title": "Mastercard diversity page (accessed 2025-02-21",
         "url": "https://www.mastercard.us/en-us/vision/who-we-are/diversity-inclusion.html",
