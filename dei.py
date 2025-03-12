@@ -2,6 +2,35 @@ from datetime import date, datetime
 
 retreating_sources = [
     {
+        "date": "2025-03-07",
+        "title": "Which US companies are pulling back on diversity initiatives?",
+        "url": "https://apnews.com/article/dei-diversity-equity-inclusion-companies-lawsuits-2193ef0a864db968e6934f971f78e8f2",
+        "companies": [
+            "Uber",
+            "Salesforce",
+            "Pepsi",
+            "Goldman Sachs",
+            "Google",
+            "Target",
+            "Meta",
+            "Amazon",
+            "McDonald's",
+            "Walmart",
+            "Ford",
+            "Lowe's",
+            "Harley-Davidson",
+            "Brown-Forman",
+            "John Deere",
+            "Tractor Supply",
+        ],
+    },
+    {
+        "date": "2025-03-05",
+        "title": "Victoria’s Secret Tweaks DEI Language To ‘Inclusion And Belonging’: Here Are All The Companies Rolling Back DEI Programs",
+        "url": "https://www.forbes.com/sites/conormurray/2025/03/05/victorias-secret-tweaks-dei-language-to-inclusion-and-belonging-here-are-all-the-companies-rolling-back-dei-programs/",
+        "companies": ["Victoria's Secret", "State Street"],
+    },
+    {
         "date": "2025-02-21",
         "title": "Another DEI rollback as KPMG US ends strategy aimed at underrepresented groups",
         "url": "https://www.businessinsider.com/kpmg-us-rolls-back-dei-strategy-big-four-trump-2025-2",
@@ -36,14 +65,14 @@ retreating_sources = [
             "Amtrak",
             "Bank of America",
             "Boeing",
-            "Brown-Forman (Jack Daniel's)",
+            "Brown-Forman",
             "Chipotle",
             "Citigroup",
             "Coca-Cola",
             "Comcast",
             "Deloitte",
             "Disney",
-            "Ford Motor Co.",
+            "Ford",
             "General Electric (GE)",
             "Goldman Sachs",
             "Google",
@@ -73,8 +102,8 @@ retreating_sources = [
         "url": "https://www.ap.org/news-highlights/spotlights/2025/which-us-companies-are-pulling-back-on-diversity-initiatives/",
         "companies": [
             "Amazon",
-            "Brown-Forman (Jack Daniel's)",
-            "Ford Motor Co.",
+            "Brown-Forman",
+            "Ford",
             "Goldman Sachs",
             "Google",
             "Harley-Davidson",
@@ -97,13 +126,58 @@ retreating_sources = [
 
 holding_sources = [
     {
+        "date": "2025-03-11",
+        "title": "CVS   ",
+        "url": "https://www.cvshealth.com/about/our-strategy/diversity.html",
+        "companies": ["CVS"],
+    },
+    {
+        "date": "2025-03-11",
+        "title": "Old Navy",
+        "url": "https://oldnavy.gap.com/customerService/info.do?cid=1160233",
+        "companies": ["Old Navy"],
+    },
+    {
+        "date": "2025-03-11",
+        "title": "Target",
+        "url": "https://corporate.target.com/sustainability-governance/our-team/belonging",
+        "companies": ["Target"],
+    },
+    {
+        "date": "2025-03-11",
+        "title": "Giant",
+        "url": "https://giantfood.com/pages/diversity-inclusion",
+        "companies": ["Giant"],
+    },
+    {
+        "date": "2025-03-11",
+        "title": "Kroger",
+        "url": "https://www.thekrogerco.com/vendors-suppliers/supplier-inclusion/",
+        "companies": ["Kroger"],
+    },
+    {
+        "date": "2025-03-11",
+        "title": "Meijer",
+        "url": "https://jobs.meijer.com/diversity/",
+        "companies": ["Meijer"],
+    },
+    {
+        "date": "2025-03-11",
+        "title": "Visa",
+        "url": "https://usa.visa.com/about-visa/diversity-inclusion.html",
+        "companies": ["Visa"],
+    },
+    {
+        "date": "2025-03-11",
+        "title": "Logitech",
+        "url": "https://www.logitech.com/en-us/social-impact/diversity-inclusion.html",
+        "companies": ["Logitech"],
+    },
+    {
         "date": "2025-02-28",
         "title": "Companies may be rolling back their diversity policies but investors keep voting down anti-DEI shareholder proposals",
         "url": "https://finance.yahoo.com/news/companies-may-rolling-back-diversity-130000304.html",
-        "companies": [
-            "Apple",
-            "John Deere"
-        ],
+        "companies": ["Apple", "John Deere"],
     },
     {
         "date": "2025-02-28",
@@ -267,6 +341,23 @@ class DEISourceManager:
         if retreating_sources or holding_sources:
             self.process_sources()
 
+    def generate_markdown_sources(self):
+        # Retreating sources
+        source_text = "\n\n## Retreating\n"
+        for index, source in enumerate(self.retreating_sources, start=1):
+            source_text += (
+                f"\n\nR{index}) ({source['date']}) [{source['title']}]({source['url']})"
+            )
+
+        # Holding the Line sources
+        source_text += "\n\n## Holding the line\n"
+        for index, source in enumerate(self.holding_sources, start=1):
+            source_text += (
+                f"\n\nH{index}) ({source['date']}) [{source['title']}]({source['url']})"
+            )
+
+        return source_text
+
     def process_sources(self):
         """
         Processes sources, allowing companies to appear in both categories
@@ -303,32 +394,24 @@ class DEISourceManager:
         self.sorted_retreating = sorted(self.retreating_companies.keys())
         self.sorted_holding = sorted(self.holding_companies.keys())
 
-        def _get_all_companies(self):
-            """Helper to get all unique companies from all sources"""
-            companies = set()
-            for source in self.retreating_sources:
-                companies.update(source["companies"])
-            for source in self.holding_sources:
-                companies.update(source["companies"])
-            return companies
-            def generate_markdown_sources(self):
-                # Retreating sources
-                source_text = "\n\n## Retreating\n"
-                for index, source in enumerate(self.retreating_sources, start=1):
-                    source_text += (
-                        f"\n\nR{index}) ({source['date']}) [{source['title']}]({source['url']})"
-                    )
+    def generate_markdown_sources(self):
+        # Retreating sources
+        source_text = "\n\n## Retreating\n"
+        for index, source in enumerate(self.retreating_sources, start=1):
+            source_text += f"\n\nR{index}) ({source['date']}) [{source['title']}]({source['url']})"
 
-                # Holding the Line sources
-                source_text += "\n\n## Holding the line\n"
-                for index, source in enumerate(self.holding_sources, start=1):
-                    source_text += (
-                        f"\n\nH{index}) ({source['date']}) [{source['title']}]({source['url']})"
-                    )
+        # Holding the Line sources
+        source_text += "\n\n## Holding the line\n"
+        for index, source in enumerate(self.holding_sources, start=1):
+            source_text += f"\n\nH{index}) ({source['date']}) [{source['title']}]({source['url']})"
 
-                return source_text
+        return source_text
 
     def generate_markdown_table(self):
+        # Sort companies alphabetically first
+        self.sorted_retreating = sorted(self.retreating_companies.keys())
+        self.sorted_holding = sorted(self.holding_companies.keys())
+
         table_header = (
             "| Retreating | Sources | Holding the Line | Sources |\n"
             "|------------|---------|------------------|---------|\n"
@@ -341,14 +424,16 @@ class DEISourceManager:
                 self.sorted_retreating[i] if i < len(self.sorted_retreating) else ""
             )
             retreating_sources = ", ".join(
-                sorted(self.retreating_companies.get(retreating_company, []))
+                sorted(self.retreating_companies.get(retreating_company, []),
+                    key=lambda x: int(x[1:]))
             )
 
             holding_company = (
                 self.sorted_holding[i] if i < len(self.sorted_holding) else ""
             )
             holding_sources = ", ".join(
-                sorted(self.holding_companies.get(holding_company, []))
+                sorted(self.holding_companies.get(holding_company, []),
+                    key=lambda x: int(x[1:]))
             )
 
             table_rows.append(
@@ -462,16 +547,13 @@ class DEISourceManager:
             retreating_company = (
                 self.sorted_retreating[i] if i < len(self.sorted_retreating) else ""
             )
-            retreating_sources = ", ".join(
-                sorted(self.retreating_companies.get(retreating_company, []))
-            )
+
+            retreating_sources = ", ".join(sorted(self.retreating_companies.get(retreating_company, []), key=lambda x: int(x[1:])))
 
             holding_company = (
                 self.sorted_holding[i] if i < len(self.sorted_holding) else ""
             )
-            holding_sources = ", ".join(
-                sorted(self.holding_companies.get(holding_company, []))
-            )
+            holding_sources = ", ".join(sorted(self.holding_companies.get(holding_company, []), key=lambda x: int(x[1:])))
 
             html += f"<tr><td>{retreating_company}</td><td>{retreating_sources}</td><td>{holding_company}</td><td>{holding_sources}</td></tr>\n"
 
@@ -495,6 +577,7 @@ class DEISourceManager:
             html += "</div>\n"
 
         html += "</div>\n"
+
         html += "</body>\n</html>"
 
         return html
