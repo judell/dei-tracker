@@ -139,12 +139,6 @@ holding_sources = [
     },
     {
         "date": "2025-03-11",
-        "title": "Target",
-        "url": "https://corporate.target.com/sustainability-governance/our-team/belonging",
-        "companies": ["Target"],
-    },
-    {
-        "date": "2025-03-11",
         "title": "Giant",
         "url": "https://giantfood.com/pages/diversity-inclusion",
         "companies": ["Giant"],
