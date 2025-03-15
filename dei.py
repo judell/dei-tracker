@@ -1,6 +1,19 @@
 from datetime import date, datetime
+import sys
 
 retreating_sources = [
+    {
+        "date": "2025-02-10",
+        "title": "PBS Closes DEI Office After Sociopath Executive Order",
+        "url": "https://www.hollywoodreporter.com/business/business-news/pbs-closes-dei-office-trump-executive-order-1236132553/",
+        "companies": ["PBS"],
+    },
+    {
+        "date": "2025-03-15",
+        "title": "My cousin Army Major General Charles Calvin Rogers, who received the Medal of Honor for his service in Vietnam, has been removed from the Department of Defense's website.",
+        "url": "https://bsky.app/profile/lesleighford.bsky.social/post/3lkeekmhkbs2x",
+        "companies": ["US Department of Defense"],
+    },
     {
         "date": "2025-03-07",
         "title": "Which US companies are pulling back on diversity initiatives?",
@@ -319,7 +332,55 @@ holding_sources = [
     },
 ]
 
+def run_tests_and_update_html():
+    """
+    Runs the tests.py script, captures the output, and replaces a placeholder in index.html with the test results.
+    """
+    import subprocess
+    import sys
 
+    # Use the same Python interpreter that's running this script
+    python_executable = sys.executable
+
+    # Run the tests and capture the output
+    try:
+        test_output = subprocess.check_output([python_executable, "-m", "unittest", "tests.py"],
+                                             stderr=subprocess.STDOUT,
+                                             universal_newlines=True)
+        print(test_output)  # Display the test output in the console
+    except subprocess.CalledProcessError as e:
+        test_output = f"Error running tests: {e.output}"
+        print(test_output)
+
+    # Format the test output for HTML
+    formatted_output = f"""
+<div class="test-results">
+<h2>Test Results</h2>
+<pre>
+{test_output}
+</pre>
+</div>
+"""
+
+    # Read the current HTML file
+    try:
+        with open("index.html", "r", encoding="utf-8") as f:
+            html_content = f.read()
+
+        # Replace the placeholder with the test results
+        if "<!-- TEST_RESULTS_PLACEHOLDER -->" in html_content:
+            updated_html = html_content.replace("<!-- TEST_RESULTS_PLACEHOLDER -->", formatted_output)
+        else:
+            # If placeholder doesn't exist, add the results before the closing body tag
+            updated_html = html_content.replace("</body>", f"{formatted_output}\n</body>")
+
+        # Write the updated HTML back to the file
+        with open("index.html", "w", encoding="utf-8") as f:
+            f.write(updated_html)
+
+        print("HTML file updated with test results.")
+    except Exception as e:
+        print(f"Error updating HTML file: {e}")
 class DEISourceManager:
     def __init__(self, retreating_sources=None, holding_sources=None):
         self.retreating_sources = retreating_sources or []
@@ -492,7 +553,6 @@ class DEISourceManager:
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
-            line-height: .5;
         }
         th, td {
             border: 1px solid #ddd;
@@ -571,7 +631,8 @@ class DEISourceManager:
             html += "</div>\n"
 
         html += "</div>\n"
-
+        html += "<hr/\n"
+        html += "<!-- TEST_RESULTS_PLACEHOLDER -->\n"
         html += "</body>\n</html>"
 
         return html
@@ -590,3 +651,4 @@ class DEISourceManager:
 if __name__ == "__main__":
     manager = DEISourceManager(retreating_sources, holding_sources)
     manager.write_outputs()
+    run_tests_and_update_html()
