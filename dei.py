@@ -1,7 +1,30 @@
 from datetime import date, datetime
 import sys
 
+
 retreating_sources = [
+    {
+        "date": "2025-04-01",
+        "title": "DEI Rollbacks: What Companies Are Doing in 2025",
+        "url": "https://blog.ongig.com/diversity-and-inclusion/dei-rollbacks",
+        "companies": ["Meta", "Amazon", "McDonald's", "Target"],
+    },
+    {
+        "date": "2025-04-02",
+        "title": "Donald Trump's crackdown on diversity and inclusion",
+        "url": "https://www.dw.com/en/donald-trumps-crackdown-on-diversity-and-inclusion/a-72110497",
+        "companies": [
+            "Amazon",
+            "Boeing",
+            "Ford",
+            "Google",
+            "Harley-Davidson",
+            "John Deere",
+            "McDonald's",
+            "Meta",
+            "Walmart",
+        ],
+    },
     {
         "date": "2025-02-10",
         "title": "PBS Closes DEI Office After Sociopath Executive Order",
@@ -139,10 +162,16 @@ retreating_sources = [
 
 holding_sources = [
     {
-        "date": "2025-03-11",
-        "title": "CVS   ",
-        "url": "https://www.cvshealth.com/about/our-strategy/diversity.html",
-        "companies": ["CVS"],
+        "date": "2025-04-01",
+        "title": "DEI Rollbacks: What Companies Are Doing in 2025",
+        "url": "https://blog.ongig.com/diversity-and-inclusion/dei-rollbacks",
+        "companies": ["Apple", "Costco", "Cisco"],
+    },
+    {
+        "date": "2025-04-02",
+        "title": "Donald Trump's crackdown on diversity and inclusion",
+        "url": "https://www.dw.com/en/donald-trumps-crackdown-on-diversity-and-inclusion/a-72110497",
+        "companies": ["Apple", "Coca-Cola", "Costco", "Delta Airlines"],
     },
     {
         "date": "2025-03-11",
@@ -332,6 +361,7 @@ holding_sources = [
     },
 ]
 
+
 def run_tests_and_update_html():
     """
     Runs the tests.py script, captures the output, and replaces a placeholder in index.html with the test results.
@@ -344,9 +374,11 @@ def run_tests_and_update_html():
 
     # Run the tests and capture the output
     try:
-        test_output = subprocess.check_output([python_executable, "-m", "unittest", "tests.py"],
-                                             stderr=subprocess.STDOUT,
-                                             universal_newlines=True)
+        test_output = subprocess.check_output(
+            [python_executable, "-m", "unittest", "tests.py"],
+            stderr=subprocess.STDOUT,
+            universal_newlines=True,
+        )
         print(test_output)  # Display the test output in the console
     except subprocess.CalledProcessError as e:
         test_output = f"Error running tests: {e.output}"
@@ -369,10 +401,14 @@ def run_tests_and_update_html():
 
         # Replace the placeholder with the test results
         if "<!-- TEST_RESULTS_PLACEHOLDER -->" in html_content:
-            updated_html = html_content.replace("<!-- TEST_RESULTS_PLACEHOLDER -->", formatted_output)
+            updated_html = html_content.replace(
+                "<!-- TEST_RESULTS_PLACEHOLDER -->", formatted_output
+            )
         else:
             # If placeholder doesn't exist, add the results before the closing body tag
-            updated_html = html_content.replace("</body>", f"{formatted_output}\n</body>")
+            updated_html = html_content.replace(
+                "</body>", f"{formatted_output}\n</body>"
+            )
 
         # Write the updated HTML back to the file
         with open("index.html", "w", encoding="utf-8") as f:
@@ -381,6 +417,8 @@ def run_tests_and_update_html():
         print("HTML file updated with test results.")
     except Exception as e:
         print(f"Error updating HTML file: {e}")
+
+
 class DEISourceManager:
     def __init__(self, retreating_sources=None, holding_sources=None):
         self.retreating_sources = retreating_sources or []
@@ -453,12 +491,16 @@ class DEISourceManager:
         # Retreating sources
         source_text = "\n\n## Retreating\n"
         for index, source in enumerate(self.retreating_sources, start=1):
-            source_text += f"\n\nR{index}) ({source['date']}) [{source['title']}]({source['url']})"
+            source_text += (
+                f"\n\nR{index}) ({source['date']}) [{source['title']}]({source['url']})"
+            )
 
         # Holding the Line sources
         source_text += "\n\n## Holding the line\n"
         for index, source in enumerate(self.holding_sources, start=1):
-            source_text += f"\n\nH{index}) ({source['date']}) [{source['title']}]({source['url']})"
+            source_text += (
+                f"\n\nH{index}) ({source['date']}) [{source['title']}]({source['url']})"
+            )
 
         return source_text
 
@@ -479,16 +521,20 @@ class DEISourceManager:
                 self.sorted_retreating[i] if i < len(self.sorted_retreating) else ""
             )
             retreating_sources = ", ".join(
-                sorted(self.retreating_companies.get(retreating_company, []),
-                    key=lambda x: int(x[1:]))
+                sorted(
+                    self.retreating_companies.get(retreating_company, []),
+                    key=lambda x: int(x[1:]),
+                )
             )
 
             holding_company = (
                 self.sorted_holding[i] if i < len(self.sorted_holding) else ""
             )
             holding_sources = ", ".join(
-                sorted(self.holding_companies.get(holding_company, []),
-                    key=lambda x: int(x[1:]))
+                sorted(
+                    self.holding_companies.get(holding_company, []),
+                    key=lambda x: int(x[1:]),
+                )
             )
 
             table_rows.append(
@@ -602,12 +648,22 @@ class DEISourceManager:
                 self.sorted_retreating[i] if i < len(self.sorted_retreating) else ""
             )
 
-            retreating_sources = ", ".join(sorted(self.retreating_companies.get(retreating_company, []), key=lambda x: int(x[1:])))
+            retreating_sources = ", ".join(
+                sorted(
+                    self.retreating_companies.get(retreating_company, []),
+                    key=lambda x: int(x[1:]),
+                )
+            )
 
             holding_company = (
                 self.sorted_holding[i] if i < len(self.sorted_holding) else ""
             )
-            holding_sources = ", ".join(sorted(self.holding_companies.get(holding_company, []), key=lambda x: int(x[1:])))
+            holding_sources = ", ".join(
+                sorted(
+                    self.holding_companies.get(holding_company, []),
+                    key=lambda x: int(x[1:]),
+                )
+            )
 
             html += f"<tr><td>{retreating_company}</td><td>{retreating_sources}</td><td>{holding_company}</td><td>{holding_sources}</td></tr>\n"
 
